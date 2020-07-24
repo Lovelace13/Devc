@@ -20,6 +20,9 @@ int main(int argc, char** argv) {
 	string fic = "Fisica";
 	string pro = "Programacion";
 	int materias = 0;
+	int estudiantes_suspensos = 0;
+	int estudiantes_aprobados = 0;
+	int flag;
 			
 	cout <<"\n	*** 	MENU	***		\n"<<endl;
 	printf("Recuerte que las notas estan enumeradas de la siguiente forma\n\nNota 1: Matematicas; Nota 2: Fisica; Nota 3: Programacion\n\n");
@@ -58,31 +61,21 @@ int main(int argc, char** argv) {
 		switch(op){
 			case 1:
 				puts("\n\t**Estudiantes suspendidos en alguna materia**");
-				
 				for (int i= 0; i < num; i++){
-					printf("\nEstudiantes Suspensos (<70):\n");
+					flag = 0;
 					for(int j= 0; j < 3; j++){
-						printf("\nEstudiante %d reprobado\n", i+1);
 						if(lista_estudiante[i][j] < 70){							
-							if(j+1 == 1){
-								cout << "\n\tReprobado en la materia " + mat;
-								//printf("Reprobado en la materia %s", mat);
-							}
-							if(j+1 == 2){
-								cout << "\n\tReprobado en la materia " + fic;
-								//printf("Reprobado en la materia %s", fic);
-							}
-							if(j+1 == 3){
-								cout << "Reprobado en la materia " + pro;
-								//printf("Reprobado en la materia %s", pro);
-							}
+							flag = 1;
 						}
 					}
+					if (flag ==1){
+						estudiantes_suspensos++;
+					}
 				}
+				printf("\n Hay %d estudiantes suspendidos en alguna materia\n", estudiantes_suspensos);
 				break;
 			case 2:
-				puts("\n\tEstudiantes aprobados en todas las materias\n");
-				
+				puts("\n\tEstudiantes aprobados en todas las materias\n");				
 				for (int i= 0; i < num; i++){
 					printf("\nEstudiantes Aprobados (>70): \n");
 					for(int j= 0; j < 3; j++){		
@@ -91,9 +84,10 @@ int main(int argc, char** argv) {
 						}
 					}
 					if(materias == 3){
-						printf("\nEstudiante %d aprobado\n", i+1);
+						estudiantes_aprobados++;
 					}
 				}
+				printf("\n Hay %d estudiantes aprobados\n", estudiantes_aprobados);
 				break;
 			case 3:
 				puts("\n\tOpción 3\n");
@@ -106,7 +100,6 @@ int main(int argc, char** argv) {
 		}
 				
 	}while(!(op>0 && op<=4));
-	
 
 	system("pause");
 	return 0;	
